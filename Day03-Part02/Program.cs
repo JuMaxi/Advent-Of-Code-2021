@@ -21,56 +21,35 @@ namespace Day03_Part02
                 for (int PositionArray = 0; PositionArray <= ReadText.Length - 1; PositionArray++)
                 {
                     string PositionInitial = ReadText[PositionArray];
-
                     char ValueChar = PositionInitial[PositionChar];
 
-                    if (ValueChar == '1')
-                    {
-                        Bit1 = Bit1 + 1;
-                    }
-                    else
-                    {
-                        Bit0 = Bit0 + 1;
-                    }
+                    Bit1 = Bit1 + (Convert.ToInt32(ValueChar) - 48);
                 }
 
+                Bit0 = ReadText.Length - Bit1;
 
-                string[] NewReadText = new string[0];
 
-                if (Bit1 > (ReadText.Length / 2))
+                string[] NewReadText = new string[Bit1];
+                char mostCommonBit = '1';
+
+                if (Bit0 > (ReadText.Length / 2))
                 {
-                    NewReadText = new string[Bit1];
+                    NewReadText = new string[Bit0];
+                    mostCommonBit = '0';
                 }
-                else
-                {
-                    if (Bit0 > (ReadText.Length / 2))
-                    {
-                        NewReadText = new string[Bit0];
-                    }
-                }
-
 
 
                 int NewPositionArray = 0;
-
 
                 for (int PositionArray = 0; PositionArray <= ReadText.Length - 1; PositionArray++)
                 {
                     string PositionInitial = ReadText[PositionArray];
                     char ValueChar = PositionInitial[PositionChar];
 
-                    if (Bit1 > (ReadText.Length / 2) && ValueChar == '1')
+                    if (ValueChar == mostCommonBit)
                     {
                         NewReadText[NewPositionArray] = PositionInitial;
                         NewPositionArray = NewPositionArray + 1;
-                    }
-                    else
-                    {
-                        if (Bit0 > (ReadText.Length / 2) && ValueChar == '0')
-                        {
-                            NewReadText[NewPositionArray] = PositionInitial;
-                            NewPositionArray = NewPositionArray + 1;
-                        }
                     }
                 }
 
