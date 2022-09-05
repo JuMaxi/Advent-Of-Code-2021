@@ -65,8 +65,6 @@ namespace Day03_Part02
                     MostCommonBit = '0';
                 }
 
-                // ReadText = FilterArray(ReadText, Bit1/Bit0
-
                 ReadText = FilterArray(ReadText, Size, PositionChar, MostCommonBit);
 
                 PositionChar = PositionChar + 1;
@@ -101,32 +99,19 @@ namespace Day03_Part02
                 Bit0 = ReadText2.Length - Bit1;
 
 
-                string[] NewReadText = new string[Bit0];
+                int Size2 = Bit0;
                 char LessCommonBit = '0';
 
                 if (Bit0 > Bit1)
                 {
-                    NewReadText = new string[Bit1];
+                    Size2 = Bit1;
                     LessCommonBit = '1';
                 }
 
+                ReadText2 = FilterArray(ReadText2, Size2, PositionChar2, LessCommonBit);
 
-                int NewPositionArray = 0;
-
-                for (int PositionArray = 0; PositionArray <= ReadText2.Length - 1; PositionArray++)
-                {
-                    string PositionInitial = ReadText2[PositionArray];
-                    char ValueChar = PositionInitial[PositionChar2];
-
-                    if (ValueChar == LessCommonBit)
-                    {
-                        NewReadText[NewPositionArray] = PositionInitial;
-                        NewPositionArray = NewPositionArray + 1;
-                    }
-                }
-
+                
                 PositionChar2 = PositionChar2 + 1;
-                ReadText2 = NewReadText;
                 Bit0 = 0;
                 Bit1 = 0;
 
