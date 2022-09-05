@@ -5,6 +5,20 @@ namespace Day03_Part02
 {
     class Program
     {
+        static int CalculateAmountBit1(string[] array, int position)
+        {
+            int amountBit1 = 0;
+            for (int PositionArray = 0; PositionArray <= array.Length - 1; PositionArray++)
+            {
+                string PositionInitial = array[PositionArray];
+                char ValueChar = PositionInitial[position];
+
+                amountBit1 = amountBit1 + (Convert.ToInt32(ValueChar) - 48);
+            }
+
+            return amountBit1;
+        }
+
         static void Main(string[] args)
         {
             string[] ReadText = File.ReadAllLines("C:/Teste/teste.txt");
@@ -19,14 +33,7 @@ namespace Day03_Part02
             while (ReadText.Length >= 3)
             {
                 // Descobrir quantidade de bits predominantes na coluna ATUAL
-                for (int PositionArray = 0; PositionArray <= ReadText.Length - 1; PositionArray++)
-                {
-                    string PositionInitial = ReadText[PositionArray];
-                    char ValueChar = PositionInitial[PositionChar];
-
-                    Bit1 = Bit1 + (Convert.ToInt32(ValueChar) - 48);
-                }
-
+                Bit1 = CalculateAmountBit1(ReadText, PositionChar);
                 Bit0 = ReadText.Length - Bit1;
 
 
@@ -83,14 +90,7 @@ namespace Day03_Part02
             while (ReadText2.Length >= 3)
             {
                 // Descobrir quantidade de bits predominantes na coluna ATUAL
-                for (int PositionArray = 0; PositionArray <= ReadText2.Length - 1; PositionArray++)
-                {
-                    string PositionInitial = ReadText2[PositionArray];
-                    char ValueChar = PositionInitial[PositionChar2];
-
-                    Bit1 = Bit1 + (Convert.ToInt32(ValueChar) - 48);
-                }
-
+                Bit1 = CalculateAmountBit1(ReadText2, PositionChar2);
                 Bit0 = ReadText2.Length - Bit1;
 
 
