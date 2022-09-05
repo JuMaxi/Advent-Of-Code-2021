@@ -18,7 +18,26 @@ namespace Day03_Part02
 
             return amountBit1;
         }
+        static string [] FilterArray(string [] ReadText, int Size, int PositionChar, char MostCommonBit)
+        {
 
+            int NewPositionArray = 0;
+            string[] NewReadText = new string[Size];
+
+            for (int PositionArray = 0; PositionArray <= ReadText.Length - 1; PositionArray++)
+            {
+                string PositionInitial = ReadText[PositionArray];
+                char ValueChar = PositionInitial[PositionChar];
+
+                if (ValueChar == MostCommonBit)
+                {
+                    NewReadText[NewPositionArray] = PositionInitial;
+                    NewPositionArray = NewPositionArray + 1;
+                }
+            }
+
+            return NewReadText;
+        }
         static void Main(string[] args)
         {
             string[] ReadText = File.ReadAllLines("C:/Teste/teste.txt");
@@ -37,32 +56,20 @@ namespace Day03_Part02
                 Bit0 = ReadText.Length - Bit1;
 
 
-                string[] NewReadText = new string[Bit1];
-                char mostCommonBit = '1';
+                int Size = Bit1;
+                char MostCommonBit = '1';
 
                 if (Bit0 > Bit1)
                 {
-                    NewReadText = new string[Bit0];
-                    mostCommonBit = '0';
+                    Size = Bit0;
+                    MostCommonBit = '0';
                 }
 
+                // ReadText = FilterArray(ReadText, Bit1/Bit0
 
-                int NewPositionArray = 0;
-
-                for (int PositionArray = 0; PositionArray <= ReadText.Length - 1; PositionArray++)
-                {
-                    string PositionInitial = ReadText[PositionArray];
-                    char ValueChar = PositionInitial[PositionChar];
-
-                    if (ValueChar == mostCommonBit)
-                    {
-                        NewReadText[NewPositionArray] = PositionInitial;
-                        NewPositionArray = NewPositionArray + 1;
-                    }
-                }
+                ReadText = FilterArray(ReadText, Size, PositionChar, MostCommonBit);
 
                 PositionChar = PositionChar + 1;
-                ReadText = NewReadText;
                 Bit0 = 0;
                 Bit1 = 0;
 
