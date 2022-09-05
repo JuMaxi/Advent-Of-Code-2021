@@ -7,71 +7,72 @@ namespace Day03_Part02
     {
         static void Main(string[] args)
         {
-            //string[] ReadText = File.ReadAllLines("C:/Teste/teste.txt");
+            string[] ReadText = File.ReadAllLines("C:/Teste/teste.txt");
             int Bit1 = 0;
             int Bit0 = 0;
-            //int Oxygen = 0;
-            //int CO2 = 0;
-            //int PositionChar = 0;
-            //string teste = " ";
+            int Oxygen = 0;
+            int CO2 = 0;
+            int PositionChar = 0;
+            string teste = " ";
 
 
-            //while (ReadText.Length >= 3)
-            //{
-            //    // Descobrir quantidade de bits predominantes na coluna ATUAL
-            //    for (int PositionArray = 0; PositionArray <= ReadText.Length - 1; PositionArray++)
-            //    {
-            //        string PositionInitial = ReadText[PositionArray];
-            //        char ValueChar = PositionInitial[PositionChar];
+            while (ReadText.Length >= 3)
+            {
+                // Descobrir quantidade de bits predominantes na coluna ATUAL
+                for (int PositionArray = 0; PositionArray <= ReadText.Length - 1; PositionArray++)
+                {
+                    string PositionInitial = ReadText[PositionArray];
+                    char ValueChar = PositionInitial[PositionChar];
 
-            //        Bit1 = Bit1 + (Convert.ToInt32(ValueChar) - 48);
-            //    }
+                    Bit1 = Bit1 + (Convert.ToInt32(ValueChar) - 48);
+                }
 
-            //    Bit0 = ReadText.Length - Bit1;
-
-
-            //    string[] NewReadText = new string[Bit1];
-            //    char mostCommonBit = '1';
-
-            //    if (Bit0 > (ReadText.Length / 2))
-            //    {
-            //        NewReadText = new string[Bit0];
-            //        mostCommonBit = '0';
-            //    }
+                Bit0 = ReadText.Length - Bit1;
 
 
-            //    int NewPositionArray = 0;
+                string[] NewReadText = new string[Bit1];
+                char mostCommonBit = '1';
 
-            //    for (int PositionArray = 0; PositionArray <= ReadText.Length - 1; PositionArray++)
-            //    {
-            //        string PositionInitial = ReadText[PositionArray];
-            //        char ValueChar = PositionInitial[PositionChar];
+                if (Bit0 > Bit1)
+                {
+                    NewReadText = new string[Bit0];
+                    mostCommonBit = '0';
+                }
 
-            //        if (ValueChar == mostCommonBit)
-            //        {
-            //            NewReadText[NewPositionArray] = PositionInitial;
-            //            NewPositionArray = NewPositionArray + 1;
-            //        }
-            //    }
 
-            //    PositionChar = PositionChar + 1;
-            //    ReadText = NewReadText;
-            //    Bit0 = 0;
-            //    Bit1 = 0;
+                int NewPositionArray = 0;
 
-            //    if (ReadText.Length == 2)
-            //        for (int PositionArrayEnd = 0; PositionArrayEnd <= ReadText.Length - 1; PositionArrayEnd++)
-            //        {
-            //            string verificacao = ReadText[PositionArrayEnd];
-            //            char EndChar = verificacao[PositionChar];
+                for (int PositionArray = 0; PositionArray <= ReadText.Length - 1; PositionArray++)
+                {
+                    string PositionInitial = ReadText[PositionArray];
+                    char ValueChar = PositionInitial[PositionChar];
 
-            //            if (EndChar == '1')
-            //            {
-            //                teste = verificacao;
-            //            }
+                    if (ValueChar == mostCommonBit)
+                    {
+                        NewReadText[NewPositionArray] = PositionInitial;
+                        NewPositionArray = NewPositionArray + 1;
+                    }
+                }
 
-            //        }
-            //}
+                PositionChar = PositionChar + 1;
+                ReadText = NewReadText;
+                Bit0 = 0;
+                Bit1 = 0;
+
+                if (ReadText.Length == 2)
+                {
+                    for (int PositionArrayEnd = 0; PositionArrayEnd <= ReadText.Length - 1; PositionArrayEnd++)
+                    {
+                        string verificacao = ReadText[PositionArrayEnd];
+                        char EndChar = verificacao[PositionChar];
+
+                        if (EndChar == '1')
+                        {
+                            teste = verificacao;
+                        }
+                    }
+                }
+            }
 
 
             string[] ReadText2 = File.ReadAllLines("C:/Teste/teste.txt");
@@ -123,6 +124,7 @@ namespace Day03_Part02
                 Bit1 = 0;
 
                 if (ReadText2.Length == 2)
+                {
                     for (int PositionArrayEnd = 0; PositionArrayEnd <= ReadText2.Length - 1; PositionArrayEnd++)
                     {
                         string verificacao = ReadText2[PositionArrayEnd];
@@ -132,8 +134,8 @@ namespace Day03_Part02
                         {
                             teste2 = verificacao;
                         }
-
                     }
+                }
             }
 
 
@@ -143,8 +145,8 @@ namespace Day03_Part02
 
 
             //int PowerConsumption = GamaRate * EpsilonRate;
-            //Console.WriteLine("Gama Rate is: " + GamaRate);
-            //Console.WriteLine("Epsilon Rate is: " + EpsilonRate);
+            Console.WriteLine("Oxygen is: " + teste); ;
+            Console.WriteLine("CO2 is: " + teste2);
             //Console.WriteLine("Power Consumption is: " + PowerConsumption);
         }
     }
