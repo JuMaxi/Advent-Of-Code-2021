@@ -18,7 +18,7 @@ namespace Day03_Part02
 
             return amountBit1;
         }
-        static string [] FilterArray(string [] ReadText, int Size, int PositionChar, char MostCommonBit)
+        static string[] FilterArray(string[] ReadText, int Size, int PositionChar, char MostCommonBit)
         {
 
             int NewPositionArray = 0;
@@ -38,109 +38,105 @@ namespace Day03_Part02
 
             return NewReadText;
         }
-        static void Main(string[] args)
+
+        static string BitEnd(string[] ReadText, int PositionChar, char Character)
         {
-            string[] ReadText = File.ReadAllLines("C:/Teste/teste.txt");
-            int Bit1 = 0;
-            int Bit0 = 0;
-            int Oxygen = 0;
-            int CO2 = 0;
-            int PositionChar = 0;
-            string teste = " ";
-
-
-            while (ReadText.Length >= 3)
+            string Result = "";
+            if (ReadText.Length == 2)
             {
-                // Descobrir quantidade de bits predominantes na coluna ATUAL
-                Bit1 = CalculateAmountBit1(ReadText, PositionChar);
-                Bit0 = ReadText.Length - Bit1;
-
-
-                int Size = Bit1;
-                char MostCommonBit = '1';
-
-                if (Bit0 > Bit1)
+                for (int PositionArrayEnd = 0; PositionArrayEnd <= ReadText.Length - 1; PositionArrayEnd++)
                 {
-                    Size = Bit0;
-                    MostCommonBit = '0';
-                }
+                    string verificacao = ReadText[PositionArrayEnd];
+                    char EndChar = verificacao[PositionChar];
 
-                ReadText = FilterArray(ReadText, Size, PositionChar, MostCommonBit);
-
-                PositionChar = PositionChar + 1;
-                Bit0 = 0;
-                Bit1 = 0;
-
-                if (ReadText.Length == 2)
-                {
-                    for (int PositionArrayEnd = 0; PositionArrayEnd <= ReadText.Length - 1; PositionArrayEnd++)
+                    if (EndChar == Character)
                     {
-                        string verificacao = ReadText[PositionArrayEnd];
-                        char EndChar = verificacao[PositionChar];
-
-                        if (EndChar == '1')
-                        {
-                            teste = verificacao;
-                        }
+                        Result = verificacao;
                     }
                 }
             }
-
-
-            string[] ReadText2 = File.ReadAllLines("C:/Teste/teste.txt");
-            int PositionChar2 = 0;
-            string teste2 = " ";
-
-
-            while (ReadText2.Length >= 3)
-            {
-                // Descobrir quantidade de bits predominantes na coluna ATUAL
-                Bit1 = CalculateAmountBit1(ReadText2, PositionChar2);
-                Bit0 = ReadText2.Length - Bit1;
-
-
-                int Size2 = Bit0;
-                char LessCommonBit = '0';
-
-                if (Bit0 > Bit1)
-                {
-                    Size2 = Bit1;
-                    LessCommonBit = '1';
-                }
-
-                ReadText2 = FilterArray(ReadText2, Size2, PositionChar2, LessCommonBit);
-
-                
-                PositionChar2 = PositionChar2 + 1;
-                Bit0 = 0;
-                Bit1 = 0;
-
-                if (ReadText2.Length == 2)
-                {
-                    for (int PositionArrayEnd = 0; PositionArrayEnd <= ReadText2.Length - 1; PositionArrayEnd++)
-                    {
-                        string verificacao = ReadText2[PositionArrayEnd];
-                        char EndChar = verificacao[PositionChar2];
-
-                        if (EndChar == '0')
-                        {
-                            teste2 = verificacao;
-                        }
-                    }
-                }
-            }
-
-
-
-
-
-
-
-            //int PowerConsumption = GamaRate * EpsilonRate;
-            Console.WriteLine("Oxygen is: " + teste); ;
-            Console.WriteLine("CO2 is: " + teste2);
-            //Console.WriteLine("Power Consumption is: " + PowerConsumption);
+            return Result;
         }
+
+
+
+
+
+    static void Main(string[] args)
+    {
+        string[] ReadText1 = File.ReadAllLines("C:/Teste/teste.txt");
+        int Bit1 = 0;
+        int Bit0 = 0;
+        int Oxygen = 0;
+        int CO2 = 0;
+        int PositionChar = 0;
+        string BitEnd1 = " ";
+
+
+        while (ReadText1.Length >= 3)
+        {
+            // Descobrir quantidade de bits predominantes na coluna ATUAL
+            Bit1 = CalculateAmountBit1(ReadText1, PositionChar);
+            Bit0 = ReadText1.Length - Bit1;
+
+
+            int Size = Bit1;
+            char MostCommonBit = '1';
+
+            if (Bit0 > Bit1)
+            {
+                Size = Bit0;
+                MostCommonBit = '0';
+            }
+
+            ReadText1 = FilterArray(ReadText1, Size, PositionChar, MostCommonBit);
+
+            PositionChar = PositionChar + 1;
+            Bit0 = 0;
+            Bit1 = 0;
+
+                // int BitEnd = BitEnd(array, positionChar..., '1')
+
+            BitEnd1 = BitEnd(ReadText1, PositionChar, '1') ; 
+        }
+
+
+        string[] ReadText2 = File.ReadAllLines("C:/Teste/teste.txt");
+        int PositionChar2 = 0;
+        string BitEnd2 = " ";
+
+
+        while (ReadText2.Length >= 3)
+        {
+            // Descobrir quantidade de bits predominantes na coluna ATUAL
+            Bit1 = CalculateAmountBit1(ReadText2, PositionChar2);
+            Bit0 = ReadText2.Length - Bit1;
+
+
+            int Size2 = Bit0;
+            char LessCommonBit = '0';
+
+            if (Bit0 > Bit1)
+            {
+                Size2 = Bit1;
+                LessCommonBit = '1';
+            }
+
+            ReadText2 = FilterArray(ReadText2, Size2, PositionChar2, LessCommonBit);
+
+
+            PositionChar2 = PositionChar2 + 1;
+            Bit0 = 0;
+            Bit1 = 0;
+
+                BitEnd2 = BitEnd(ReadText2, PositionChar2, '0');
+        }
+
+
+        Console.WriteLine("Oxygen is: " + BitEnd1); ;
+        Console.WriteLine("CO2 is: " + BitEnd2);
+
     }
+}
 }
 
