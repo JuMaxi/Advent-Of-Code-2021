@@ -88,18 +88,18 @@ namespace Day03_Part02
                     string PositionInitial = ReadText2[PositionArray];
                     char ValueChar = PositionInitial[PositionChar2];
 
-                    Bit0 = Bit0 + (Convert.ToInt32(ValueChar) - 48);
+                    Bit1 = Bit1 + (Convert.ToInt32(ValueChar) - 48);
                 }
 
-                Bit1 = ReadText2.Length - Bit0;
+                Bit0 = ReadText2.Length - Bit1;
 
 
-                string[] NewReadText = new string[Bit1];
+                string[] NewReadText = new string[Bit0];
                 char LessCommonBit = '0';
 
-                if (Bit0 < Bit1)
+                if (Bit0 > Bit1)
                 {
-                    NewReadText = new string[Bit0];
+                    NewReadText = new string[Bit1];
                     LessCommonBit = '1';
                 }
 
