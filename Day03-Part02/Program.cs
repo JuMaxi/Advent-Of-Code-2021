@@ -39,7 +39,7 @@ namespace Day03_Part02
             return NewReadText;
         }
 
-        static string BitEnd(string[] ReadText, int PositionChar, char Character)
+        static string FindBitEnd(string[] ReadText, int PositionChar, char Character)
         {
             string Result = "";
             if (ReadText.Length == 2)
@@ -58,29 +58,21 @@ namespace Day03_Part02
             return Result;
         }
 
-        static int NumberInt(string BitEnd)
+        static int ConvertNumberInt(string BitEnd)
         {
             int PowInt = 0;
-            double Pow = 0;
+            
             for (int PositionArray = 0; PositionArray <= BitEnd.Length-1; PositionArray++)
             {
-
                 char ValueChar = BitEnd[PositionArray];
-                
 
                 if (ValueChar == '1')
                 {
                     int IntValueChar = Convert.ToInt32(ValueChar) - 48;
-                    int teste = (BitEnd.Length - PositionArray) - IntValueChar;
-                    Pow = Math.Pow(2, teste);
+                    IntValueChar = (BitEnd.Length - PositionArray) - IntValueChar;
+                    double Pow = Math.Pow(2, IntValueChar);
                     PowInt = PowInt + Convert.ToInt32(Pow);
                 }
-                if (ValueChar == '0')
-                {
-                    PowInt = PowInt + 0;
-                }
-
-                
             }
 
             return PowInt;
@@ -101,10 +93,8 @@ namespace Day03_Part02
 
             while (ReadText1.Length >= 3)
             {
-                // Descobrir quantidade de bits predominantes na coluna ATUAL
                 Bit1 = CalculateAmountBit1(ReadText1, PositionChar);
                 Bit0 = ReadText1.Length - Bit1;
-
 
                 int Size = Bit1;
                 char MostCommonBit = '1';
@@ -121,13 +111,10 @@ namespace Day03_Part02
                 Bit0 = 0;
                 Bit1 = 0;
 
-                // int BitEnd = BitEnd(array, positionChar..., '1')
+                BitEnd1 = FindBitEnd(ReadText1, PositionChar, '1');
 
-                BitEnd1 = BitEnd(ReadText1, PositionChar, '1');
-
-                Oxygen = NumberInt(BitEnd1);
+                Oxygen = ConvertNumberInt(BitEnd1);
             }
-
 
             string[] ReadText2 = File.ReadAllLines("C:/Teste/teste.txt");
             int PositionChar2 = 0;
@@ -136,7 +123,6 @@ namespace Day03_Part02
 
             while (ReadText2.Length >= 3)
             {
-                // Descobrir quantidade de bits predominantes na coluna ATUAL
                 Bit1 = CalculateAmountBit1(ReadText2, PositionChar2);
                 Bit0 = ReadText2.Length - Bit1;
 
@@ -157,14 +143,15 @@ namespace Day03_Part02
                 Bit0 = 0;
                 Bit1 = 0;
 
-                BitEnd2 = BitEnd(ReadText2, PositionChar2, '0');
+                BitEnd2 = FindBitEnd(ReadText2, PositionChar2, '0');
 
-                CO2 = NumberInt(BitEnd2);
+                CO2 = ConvertNumberInt(BitEnd2);
             }
 
-
+            int LifeSupportRating = Oxygen * CO2;
             Console.WriteLine("Oxygen is: " + Oxygen); ;
             Console.WriteLine("CO2 is: " + CO2);
+            Console.WriteLine("Life Support Rating is: " + LifeSupportRating);
 
         }
     }
